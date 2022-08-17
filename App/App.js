@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -26,7 +26,10 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.bacgroundImage}
       >
-      {screen}
+        {/* this component is for fitting in diffrent screen sizes (e.g. new iphones has this black for camera) */}
+        <SafeAreaView style={styles.rootScreen}>
+          {screen}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
