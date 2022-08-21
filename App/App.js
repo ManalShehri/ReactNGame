@@ -11,6 +11,7 @@ import Colors from './constant/colors';
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   // this function should be loaded and excuted before the app starts 
   const [fontsLoaded] = useFonts({
@@ -31,13 +32,24 @@ export default function App() {
     setGameIsOver(true);
   } 
 
+  function startNewGameHandler() {
+    setUserNumber(null);
+    setGuessRounds(0);
+  }
+
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   if (userNumber) {
     screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />;
   }
   if (gameIsOver && userNumber){
-    screen = <GameOverScreen />
+    screen = (
+      <GameOverScreen 
+        userNumber={userNumber} 
+        roundsNumber={guessRounds} 
+        onStartNewGame={startNewGameHandler}
+      />
+    );
   }
 
   return (

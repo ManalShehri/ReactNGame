@@ -31,6 +31,12 @@ function GameScreen ({userNumber, onGameOver}) {
         }
 
     }, [currentGuess,userNumber,onGameOver]);
+    
+    // when the guess is changed
+    useEffect(() => {
+        minBoundary=1;
+        maxBoundary= 100;
+    }, [])
       
     function nextGuessHandler(direction){
 
